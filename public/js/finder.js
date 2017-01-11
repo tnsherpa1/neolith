@@ -1,103 +1,97 @@
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-jQuery(function($) {
-    // Asynchronously Load the map API
+$(function() {
     var script = document.createElement('script');
-    script.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyB-fuziJ5-UqDxiEcFsfqff2GWZjEQQ1ts&callback=initialize";
+    script.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyB-fuziJ5-UqDxiEcFsfqff2GWZjEQQ1ts&&libraries=places&callback=init";
     document.body.appendChild(script);
 });
+// CUSTOM JS FILE //
+var map; // global map variable
+var markers = []; // array to hold map markers
+function init() {
+  // set some default map details, initial center point, zoom and style
+  var mapOptions = {
+    center: new google.maps.LatLng(41.850033, -87.6500523),
+    zoom: 12,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
 
-function initialize() {
-    var map;
-    var bounds = new google.maps.LatLngBounds();
-    var latlng = new google.maps.LatLng(37.1958784, -123.7626445);
-    var mapOptions = {
-        center: latlng,
-        zoom: 8,
-        mapTypeId: 'roadmap'
-    };
+  var geocoder = new google.maps.Geocoder();
 
-    // Display a map on the page
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    map.setTilt(45);
+  document.getElementById('finder').addEventListener('click', function(){
+    geocodeAddress(geocoder, map);
+  });
 
-    var geocoder = new google.maps.Geocoder();
+//GeoCode to search
+  function geocodeAddress(geocoder, resultsMap){
     var address = document.getElementById('address').value;
-
-    document.getElementById('finder').addEventListener('click', function(){
-      geocodeAddress(geocoder, map);
-    })
-
-    function geocodeAddress(geocoder, resultsMap) {
-      var address = document.getElementById('address').value;
-      geocoder.geocode({'address': address}, function(results, status) {
-        if (status === 'OK') {
-          resultsMap.setCenter(results[0].geometry.location);
-        //   var marker = new google.maps.Marker({
-        //     map: resultsMap,
-        //     position: results[0].geometry.location
-        //   });
-        if (results[0].geometry.viewport)
-            map.fitBounds(results[0].geometry.viewport);
-        } else {
-          alert ('Geocode was not successful for the following reason: ' + status);
-        }
-      })
-    }
-
-
-
-    // Multiple Markers
-    var markers = [
-        ['Outdora, Sonoma, CA', 38.2922464,-122.4618899],
-        ['Shabo Tiles, Petaluma, CA', 38.2502735,-122.6481871]
-    ];
-
-    // Info Window Content
-    var infoWindowContent = [
-        ['<div class="info_content">' +
-        '<h3>'+markers[0][0]+'</h3>' +
-        '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
-        ['<div class="info_content">' +
-        '<h3>'+markers[1][0]+'</h3>' +
-        '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
-        '</div>']
-    ];
-
-    // Display multiple markers on a map
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
-
-    // Loop through our array of markers & place each one on the map
-    for( i = 0; i < markers.length; i++ ) {
-        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-        bounds.extend(position);
-        marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: markers[i][0]
-        });
-
-        // Allow each marker to have an info window
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-                infoWindow.setContent(infoWindowContent[i][0]);
-                infoWindow.open(map, marker);
-            }
-        })(marker, i));
-
-        // Automatically center the map fitting all markers on the screen
-        map.fitBounds(bounds);
-    }
-
-    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
-    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-        this.setZoom(11);
-        google.maps.event.removeListener(boundsListener);
+    geocoder.geocode({ 'address': address }, function(results,status) {
+      if (status === 'OK') {
+        resultsMap.setCenter(results[0].geometry.location);
+        map.setZoom(12);
+      } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+      }
     });
+  }
 
+  // create the map and reference the div#map
+  map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  // get the dealers via ajax
+  // and render them on the map
+  renderPlaces();
+}
+
+var renderPlaces = function() {
+	var infowindow =  new google.maps.InfoWindow({
+	    content: ''
+	});
+
+	jQuery.ajax({
+		url : '/api/get',
+		dataType : 'json',
+		success : function(response) {
+
+			console.log(response);
+			dealers = response;
+			// first clear any existing markers, because we will re-add below
+			clearMarkers();
+			markers = [];
+      var bounds = new google.maps.LatLngBounds();
+			// now, loop through the dealers and add them as markers to the map
+			for(var i=0;i<dealers.length;i++){
+				var latLng = {
+					lat: dealers[i].location[1],
+					lng: dealers[i].location[0]
+				};
+				// make and place map maker.
+        var image = '/images/dealers.png';
+				var marker = new google.maps.Marker({
+				    map: map,
+				    position: latLng,
+				    title : dealers[i].title,
+            icon: image
+				});
+        bindInfoWindow(marker, map, infowindow, dealers[i].title + '<br>' + dealers[i].address);
+				// keep track of markers
+				markers.push(marker);
+        // extending bounds to contain this visible marker position
+        bounds.extend( markers[i].getPosition() );
+			}
+      // setting new bounds to visible markers
+      map.fitBounds(bounds);
+		}
+	});
+};
+
+// binds a map marker and infoWindow together on click
+var bindInfoWindow = function(marker, map, infowindow, html) {
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(html);
+        infowindow.open(map, marker);
+    });
+};
+
+function clearMarkers(){
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null); // clears the markers
+  }
 }

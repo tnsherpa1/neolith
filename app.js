@@ -4,13 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var expHbs = require('express-handlebars');
 
 var appRoutes = require('./routes/app');
 
 var app = express();
-
+mongoose.connect('mongodb://localhost:27017/neodb');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', expHbs({defaultLayout: 'layout', extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
@@ -32,7 +35,7 @@ app.use('/', appRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-res.render('index');
+res.render('pages/about');
 });
 
 module.exports = app;
