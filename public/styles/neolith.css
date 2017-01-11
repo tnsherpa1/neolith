@@ -10,7 +10,10 @@
 }
 
 .container {
-  height: 1000px;
+  text-align: center;
+  background: #ecf0f1;
+  overflow: hidden;
+  padding: 50px;
 }
 
 .wrapper {
@@ -81,13 +84,12 @@ html {
     text-align: center;
 }
 
-#about {
+.pages {
     height: 100%;
     padding: 78px;
     text-align: center;
     background: url(/images/classtone.jpg) no-repeat center center fixed;
     background-size: cover;
-    min-height: 2100px;
 }
 
 .collections-section {
@@ -117,13 +119,8 @@ html {
     background: #eee;
 }
 
-#dealers {
-    padding-top: 150px;
-    text-align: center;
-}
-
 .nav-right {
-  position: absolute;
+  position: fixed;
   right: 0;
   z-index: 1500;
   height: 75px;
@@ -230,7 +227,7 @@ h5 {
 /* Sidebar Styles */
 
 .sidebar-nav {
-    position: absolute;
+    position: relative;
     top: 100px;
     width: 250px;
     margin: 0;
@@ -420,7 +417,7 @@ a:focus .video-link-icon {
 
 /*FINDER CSS*/
 #map_wrapper {
-    height: 600px;
+    height: auto;
     padding: 30px;
 }
 
@@ -433,4 +430,10 @@ a:focus .video-link-icon {
     width: 100%;
     height: 45px;
     font-size: 1.3em;
+}
+
+.thumbs {
+  height: 250px;
+  width: 250px;
+  border: solid 1px #fff;
 }

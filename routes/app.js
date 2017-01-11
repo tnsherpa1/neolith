@@ -24,7 +24,12 @@ router.get('/about', function( req, res, next ) {
 router.get('/collections', function( req, res, next ) {
   res.render('pages/collections');
 });
-
+router.get('/gallery', function( req, res, next ) {
+  res.render('pages/gallery');
+});
+router.get('/', function(req, res, next) {
+  res.render('pages/home');
+});
 router.get('/seed', function(req, res, next) {
   Dealer.find(function(err, results) { // getting all documents in MongoDB
     if (err) {
@@ -51,15 +56,5 @@ router.get('/seed', function(req, res, next) {
       });
     }
   });
-});
-
-router.get('/', function(req, res, next) {
-  Dealer.find({}, function( err, dealers ) {
-    if (err) {
-      console.log( 'error: ', err );
-    } else {
-      res.render('pages/dealers', { dealers: dealers });
-    }
-  })
 });
 module.exports = router;

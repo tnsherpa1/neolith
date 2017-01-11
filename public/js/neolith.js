@@ -50,4 +50,9 @@ $(window).scroll(function() {
   }
 });
 
-})
+$('#lightgallery').lightGallery({
+    thumbnail:true
+});
+
+
+});
