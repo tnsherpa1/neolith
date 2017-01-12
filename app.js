@@ -10,7 +10,13 @@ var expHbs = require('express-handlebars');
 var appRoutes = require('./routes/app');
 
 var app = express();
-mongoose.connect('mongodb://localhost:27017/neodb');
+var mongoUri;
+if (process.env.NODE_ENV === "production") {
+  mongoUri = "mongodb://heroku_bfw2mk27:ria6p20i6edqdn5ff2h8ltucfh@ds163738.mlab.com:63738/heroku_bfw2mk27" ;
+} else {
+  mongoUri = 'mongodb://localhost:27017/neodb';
+}
+mongoose.connect(mongoUri);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', expHbs({defaultLayout: 'layout', extname: '.hbs'}));
