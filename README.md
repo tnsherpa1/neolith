@@ -1,2 +1,2 @@
 # neolith
-Will be added soon..
+Steps to reproduce and contribute will be added soon..
