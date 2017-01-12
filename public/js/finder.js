@@ -16,10 +16,6 @@ function init() {
 
   var geocoder = new google.maps.Geocoder();
 
-  document.getElementById('finder').addEventListener('click', function(){
-    geocodeAddress(geocoder, map);
-  });
-
 //GeoCode to search
   function geocodeAddress(geocoder, resultsMap){
     var address = document.getElementById('address').value;
@@ -32,6 +28,9 @@ function init() {
       }
     });
   }
+  document.getElementById('finder').addEventListener('click', function(){
+    geocodeAddress(geocoder, map);
+  });
 
   // create the map and reference the div#map
   map = new google.maps.Map(document.getElementById("map"), mapOptions);

@@ -2,19 +2,24 @@
 <div class="container">
 <div class="row">
   <div class="col-lg-12">
+    <div class="col-lg-12 content" id="neohdr">
+      <h1>NeOLITH</h1>
+      <h3>Find Dealers Nearby</h3>
+    </div>
+      <div class="input-group">
+        <input value="San Francisco, CA" id="address" type="textbox" class="form-control" placeholder="Enter City or ZipCode">
+        <span class="input-group-btn">
+          <button id="finder" class="btn btn-primary" type="button">Search</button>
+        </span>
+      </div>
       <div id="map_wrapper">
-        <div class="input-group">
-          <input id="address" type="textbox" class="form-control" placeholder="Enter City or ZipCode">
-          <span class="input-group-btn">
-            <button id="finder" class="btn btn-primary" type="button">Find Dealers</button>
-          </span>
-        </div>
         <div id="map" class="mapping"></div>
       </div>
   </div>
 </div>
 </div>
 </div>
+{{> footer }}
 <!-- <div class="col-lg-12">
 <h1>{{title}}</h1>
 {{# each dealers }}

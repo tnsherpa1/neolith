@@ -43,7 +43,7 @@ $('.close').click(function(e){
 
 $(window).scroll(function() {
   var scroll = $(window).scrollTop();
-  if( scroll > 1058 ) {
+  if( scroll > 12 ) {
     $('.nav-right').addClass('nav-right-dark');
   } else {
     $('.nav-right').removeClass('nav-right-dark');

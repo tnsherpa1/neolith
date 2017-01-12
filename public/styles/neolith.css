@@ -11,7 +11,7 @@
 
 .container {
   text-align: center;
-  background: #ecf0f1;
+  background: #FFFFFF;
   overflow: hidden;
   padding: 50px;
 }
@@ -71,13 +71,7 @@ html {
 .collections-width {
   width: 1480px;
 }
-#classtone-header,#fusion-header,#textil-header,#iron-header,#timber-header,#colorfeel-header,#steel-header {
-  text-align: left;
-  background: #fff;
-}
-.panel-title > a > img {
-  width: 195px;
-}
+
 .intro-section {
     height: 100%;
     padding-top: 150px;
@@ -85,6 +79,7 @@ html {
 }
 
 .pages {
+    min-height: 1000px;
     height: 100%;
     padding: 78px;
     text-align: center;
@@ -130,7 +125,7 @@ html {
   background: #333;
   position: fixed;
   right: 0;
-  z-index: 1500;
+  z-index: 5;
   height: 75px;
   width: 100%;
 }
@@ -147,16 +142,6 @@ html {
 }
 .nav-right > a > h5 .fa {
   color: #f1c40f
-}
-.footer {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #fff;
-  text-align: center;
-  height: 50px;
 }
 
 h5 {
@@ -291,6 +276,7 @@ img {
 }
 .content {
   width: 100%;
+  margin-bottom: 5px;
 }
 .features {
   text-align: left;
@@ -418,7 +404,8 @@ a:focus .video-link-icon {
 /*FINDER CSS*/
 #map_wrapper {
     height: auto;
-    padding: 30px;
+    border: solid 1px #34495e;
+    margin-top: 5px;
 }
 
 #map_canvas {
@@ -436,4 +423,47 @@ a:focus .video-link-icon {
   height: 250px;
   width: 250px;
   border: solid 1px #fff;
+}
+.panel-title a>h3:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: #f1c40f;
+}
+.panel-title a.collapsed>h3:after {
+    content:"\e080";
+}
+.panel-heading {
+  text-align: left;
+  background: #fff !important;
+}
+.panel-title > a > img {
+  width: 195px;
+}
+#neohdr {
+  background: #333;
+  color: #fff;
+  height: 80px;
+}
+#neohdr>h3, #neohdr>h1 {
+  margin: 5px;
+}
+#footer-nav {
+  text-align: center;
+  background: #808080;
+  height: 30px;
+  line-height: 30px;
+}
+#footer-nav > a {
+  padding: 0 30px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #fff;
+}
+footer {
+  background: #ecf0f1;
+}
+footer .container {
+  padding: 5px;
+  background: #ecf0f1;
 }

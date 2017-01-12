@@ -30,6 +30,9 @@ router.get('/gallery', function( req, res, next ) {
 router.get('/', function(req, res, next) {
   res.render('pages/home');
 });
+router.get('/faq', function(req, res, next) {
+  res.render('pages/faq');
+});
 router.get('/seed', function(req, res, next) {
   Dealer.find(function(err, results) { // getting all documents in MongoDB
     if (err) {
