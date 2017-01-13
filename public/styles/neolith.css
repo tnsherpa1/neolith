@@ -467,3 +467,8 @@ footer .container {
   padding: 5px;
   background: #ecf0f1;
 }
+ul.dropdown-menu {
+  background: #333;
+  margin-top: 0;
+  width: 100%;
+}
