@@ -53,6 +53,9 @@ $(window).scroll(function() {
 $('#lightgallery').lightGallery({
     thumbnail:true
 });
+$('.collections').lightGallery({
+    thumbnail:true
+});
 
 
 });
