@@ -12,8 +12,8 @@ router.get('/api/get', function(req, res) {
       return res.json(error);
     }
     res.json(data);
-  })
-})
+  });
+});
 router.get('/dealers', function(req, res, next) {
   res.render('pages/dealers');
 });
@@ -32,6 +32,9 @@ router.get('/', function(req, res, next) {
 });
 router.get('/faq', function(req, res, next) {
   res.render('pages/faq');
+});
+router.get('/resources', function(req, res, next) {
+  res.render('pages/resources');
 });
 router.get('/seed', function(req, res, next) {
   Dealer.find(function(err, results) { // getting all documents in MongoDB

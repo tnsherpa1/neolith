@@ -186,9 +186,11 @@ h5 {
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #ffffff;
 }
-
+.sidebar-nav li a i {
+  color: #f1c40f;
+}
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
@@ -398,12 +400,12 @@ a:focus .video-link-icon {
 .panel-title > a > img {
   width: 195px;
 }
-#neohdr {
+.neohdr {
   background: #333;
   color: #fff;
   height: 80px;
 }
-#neohdr>h3, #neohdr>h1 {
+.neohdr>h3, .neohdr>h1 {
   margin: 5px;
 }
 #footer-nav {
