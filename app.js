@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -6,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var expHbs = require('express-handlebars');
-
+var map = require('express-sitemap');
 var appRoutes = require('./routes/app');
 
 var app = express();
@@ -43,5 +44,23 @@ app.use('/', appRoutes);
 app.use(function(req, res, next) {
 res.render('pages/about');
 });
+
+/*
+ * sitemap
+ */
+var sitemap = map({
+  sitemap: 'neolith.xml', // path for .XMLtoFile
+  route: {
+    'ALL': {
+      lastmod: '2014-01-16',
+      changefreq: 'always',
+      priority: 1.0,
+    }
+  },
+});
+
+sitemap.generate(app); // generate sitemap from express route, you can set generate inside sitemap({})
+
+sitemap.XMLtoFile(); // write this map to file
 
 module.exports = app;

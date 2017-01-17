@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
 var Dealer = require("../models/dealer");
@@ -35,6 +36,9 @@ router.get('/faq', function(req, res, next) {
 });
 router.get('/resources', function(req, res, next) {
   res.render('pages/resources');
+});
+router.get('/pages/faq.html', function( req, res, next ) {
+  res.redirect(301, '/faq');
 });
 router.get('/seed', function(req, res, next) {
   Dealer.find(function(err, results) { // getting all documents in MongoDB
