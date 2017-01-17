@@ -9,10 +9,10 @@ $('body').vegas({
   animation: 'random',
   animationDuration: 20000,
   slides: [
-    { src: '/images/neolith-kitchen.jpg' },
-    { src: '/images/neolith-project01.jpg' },
-    { src: '/images/neolith-projects01.jpg'},
-    { src: '/images/neolith-projects04.jpg'}
+    { src: 'https://neolith-countertops.s3.amazonaws.com/images/neolith-kitchen.jpg' },
+    { src: 'https://neolith-countertops.s3.amazonaws.com/images/neolith-project01.jpg' },
+    { src: 'https://neolith-countertops.s3.amazonaws.com/images/neolith-projects01.jpg'},
+    { src: 'https://neolith-countertops.s3.amazonaws.com/images/neolith-projects04.jpg'}
   ]
 });
 

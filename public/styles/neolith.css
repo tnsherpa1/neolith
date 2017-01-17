@@ -76,7 +76,7 @@ html {
     height: 100%;
     padding: 78px;
     text-align: center;
-    background: url(/images/classtone.jpg) no-repeat center center fixed;
+    background: url(https://neolith-countertops.s3.amazonaws.com/images/classtone.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -330,7 +330,7 @@ a:focus .video-link-icon {
 }
 .video-link {
   height: 363px;
-  background: url(/images/videoposter.webp) no-repeat center center scroll;
+  background: url(https://neolith-countertops.s3.amazonaws.com/images/videoposter.webp) no-repeat center center scroll;
   background-size: inherit;
   margin: 2px 0;
 }

@@ -62,7 +62,7 @@ var renderPlaces = function() {
 					lng: dealers[i].location[0]
 				};
 				// make and place map maker.
-        var image = '/images/dealers.png';
+        var image = 'https://neolith-countertops.s3.amazonaws.com/images/dealers.png';
 				var marker = new google.maps.Marker({
 				    map: map,
 				    position: latLng,
