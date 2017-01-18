@@ -407,6 +407,13 @@ a:focus .video-link-icon {
 }
 .neohdr>h3, .neohdr>h1 {
   margin: 5px;
+  font-size: 1.8em;
+}
+h1 {
+  font-size: 24px;
+}
+.thumbnail{
+  padding: 0;
 }
 #footer-nav {
   text-align: center;
