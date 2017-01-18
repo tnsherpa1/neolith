@@ -40,6 +40,10 @@ router.get('/resources', function(req, res, next) {
 router.get('/pages/faq.html', function( req, res, next ) {
   res.redirect(301, '/faq');
 });
+router.get('/pages/collections.html', function( req, res, next ) {
+  res.redirect(301, '/collections');
+});
+
 router.get('/seed', function(req, res, next) {
   Dealer.find(function(err, results) { // getting all documents in MongoDB
     if (err) {
